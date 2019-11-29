@@ -128,5 +128,46 @@ export const BLOCKCHAIN_INFO: {
             }
         },
         networks: require('moonlet-core/src/blockchain/zilliqa/networks').default
+    },
+    ['WAVELET']: {
+        coin: 'PERL',
+        defaultUnit: 'KEN',
+        units: {
+            KEN: new BigNumber(1),
+            PERL: new BigNumber(Math.pow(10, 9))
+        },
+        decimals: 5,
+        fee: {
+            type: BlockchainFeeType.GAS,
+            config: {
+                gasPriceUnit: 'KEN',
+                gasPriceInputUnit: 'KEN',
+                ui: 'simple',
+                default: {
+                    gasPrice: 15,
+                    gasLimit: 15,
+                    gasPricePresets: {
+                        safeLow: undefined,
+                        standard: 15,
+                        fast: undefined,
+                        fastest: undefined
+                    }
+                }
+            }
+        },
+        nameResolver: 'ens',
+        pagesConfig: {
+            accountPage: {
+                multipleAddressFormats: true,
+                displayFormats: ['default', 'base16']
+            }
+        },
+        hardwareWallet: {
+            ledger: {
+                appName: 'Wavelet',
+                derivationPaths: []
+            }
+        },
+        networks: require('moonlet-core/src/blockchain/wavelet/networks').default
     }
 };

@@ -97,6 +97,7 @@ const plugins: IPlugins = {
     );
     await plugins.wallet.createAccount(Blockchain.ZILLIQA, 1);
     await plugins.wallet.createAccount(Blockchain.ETHEREUM, 1);
+    await plugins.wallet.createAccount(Blockchain.WAVELET, 1);
 
     // get multiple addresses from HW using a range of accountIds and derivationIds
     // const hw = new HardwareWalletEthereum();

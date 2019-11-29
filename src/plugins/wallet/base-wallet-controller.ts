@@ -71,6 +71,7 @@ export abstract class BaseWalletController {
         this.wallet = new Wallet(mnemonics);
         this.wallet.loadBlockchain(await this.loadBlockchain('zilliqa'));
         this.wallet.loadBlockchain(await this.loadBlockchain('ethereum'));
+        this.wallet.loadBlockchain(await this.loadBlockchain('wavelet'));
 
         this.password = password;
         await this.saveWallet();
@@ -99,7 +100,8 @@ export abstract class BaseWalletController {
         // TODO: remove lazy loading
         const blockchains = await Promise.all([
             this.loadBlockchain('ethereum'),
-            this.loadBlockchain('zilliqa')
+            this.loadBlockchain('zilliqa'),
+            this.loadBlockchain('wavelet')
         ]);
 
         try {
@@ -145,7 +147,8 @@ export abstract class BaseWalletController {
         // TODO: remove lazy loading
         const blockchains = await Promise.all([
             this.loadBlockchain('ethereum'),
-            this.loadBlockchain('zilliqa')
+            this.loadBlockchain('zilliqa'),
+            this.loadBlockchain('wavelet')
         ]);
 
         try {

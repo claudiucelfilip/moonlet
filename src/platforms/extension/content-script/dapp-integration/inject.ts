@@ -1,6 +1,7 @@
 import { Communication } from './../utils/communication/communication';
 import { WALLET_ID } from '../utils/constants';
 import { ZilliqaProvider } from './providers/zilliqa';
+import { WaveletProvider } from './providers/wavelet';
 import { wallet } from 'dapp-wallet-util';
 
 const comm = new Communication();
@@ -13,6 +14,7 @@ class MoonletWallet {
         this.comm = c;
 
         this.providers.zilliqa = new ZilliqaProvider(this.comm);
+        this.providers.wavelet = new WaveletProvider(this.comm);
 
         this.sendReadyEvent();
     }
