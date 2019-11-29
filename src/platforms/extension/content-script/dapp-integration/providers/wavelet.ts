@@ -1,8 +1,6 @@
 import { BLOCKCHAIN_INFO } from './../../../../../utils/blockchain/blockchain-info';
 import { Communication } from './../../utils/communication/communication';
 import { Blockchain } from 'moonlet-core/src/core/blockchain';
-import { toBech32Address } from '@zilliqa-js/crypto/dist/bech32';
-import { isBech32 } from '@zilliqa-js/util/dist/validation';
 
 export class WaveletProvider {
     public middleware = {
