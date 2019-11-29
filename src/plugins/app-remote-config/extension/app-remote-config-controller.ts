@@ -6,6 +6,7 @@ const EXCHANGE_RATES_INTERVAL = 15 * 60 * 1000; // 15 minutes
 const FEATURES_CONFIG_INTERVAL = 15 * 60 * 1000; // 15 minutes
 
 const API_BASE_URL = 'https://api.moonlet.xyz';
+const BINANCE_API_URL = 'https://api.binance.com/api/v1/exchangeInfo';
 
 export class AppRemoteConfigController implements IAppRemoteConfigPlugin {
     private exchangeRates = {
@@ -29,11 +30,29 @@ export class AppRemoteConfigController implements IAppRemoteConfigPlugin {
     }
 
     public async getExchangeRates() {
-        return this.fetchApi(
-            `${API_BASE_URL}/exchangeRates`,
-            this.exchangeRates,
-            EXCHANGE_RATES_INTERVAL
-        );
+        // TODO replace when API_BASE_URL returns PERL echange rates
+        const [res1, res2] = await Promise.all([
+            this.fetchApi(
+                `${API_BASE_URL}/exchangeRates`,
+                this.exchangeRates,
+                EXCHANGE_RATES_INTERVAL
+            ),
+            this.fetchApi(BINANCE_API_URL, {}, EXCHANGE_RATES_INTERVAL)
+        ]);
+
+        const PERLUSDC = res2.data.symbols
+            .find(item => item.symbol === 'PERLUSDC')
+            .filters.find(item => item.filterType === 'PERCENT_PRICE').multiplierUp;
+
+        return {
+            ...res1,
+            data: {
+                ...res1.data,
+                PERL: {
+                    USD: parseFloat(PERLUSDC)
+                }
+            }
+        };
     }
 
     public async getFeaturesConfig() {

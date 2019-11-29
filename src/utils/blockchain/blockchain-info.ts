@@ -145,7 +145,7 @@ export const BLOCKCHAIN_INFO: {
                 ui: 'simple',
                 default: {
                     gasPrice: 15,
-                    gasLimit: 15,
+                    gasLimit: 1,
                     gasPricePresets: {
                         safeLow: undefined,
                         standard: 15,
@@ -160,12 +160,6 @@ export const BLOCKCHAIN_INFO: {
             accountPage: {
                 multipleAddressFormats: true,
                 displayFormats: ['default', 'base16']
-            }
-        },
-        hardwareWallet: {
-            ledger: {
-                appName: 'Wavelet',
-                derivationPaths: []
             }
         },
         networks: require('moonlet-core/src/blockchain/wavelet/networks').default
