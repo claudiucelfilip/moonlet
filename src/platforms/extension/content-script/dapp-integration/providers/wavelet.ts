@@ -63,7 +63,8 @@ export class WaveletProvider {
             params[0].amount = params[0].amount.toString();
             params[0].gasPrice = defaultFees.gasPrice.toString();
             params[0].gasLimit = defaultFees.gasLimit.toString();
-            params[0].toAddr = params[0].toAddr;
+            params[0].toAddr =
+                params[0].toAddr || Buffer.from(params[0].data.wallet.publicKey).toString('hex');
         }
         // console.log(method, params);
 
