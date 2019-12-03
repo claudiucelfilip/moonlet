@@ -59,9 +59,10 @@ export class WaveletProvider {
 
     public async send(method, ...params) {
         if (method === 'CreateTransaction') {
+            const defaultFees = BLOCKCHAIN_INFO[Blockchain.WAVELET].fee.config.default;
             params[0].amount = params[0].amount.toString();
-            params[0].gasPrice = params[0].gasPrice.toString();
-            params[0].gasLimit = params[0].gasLimit.toString();
+            params[0].gasPrice = defaultFees.gasPrice.toString();
+            params[0].gasLimit = defaultFees.gasLimit.toString();
             params[0].toAddr = params[0].toAddr;
         }
         // console.log(method, params);
